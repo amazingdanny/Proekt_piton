@@ -1,6 +1,7 @@
 import pygame
 import os
 from board import Board
+from piece import Piece
 
 class Minesweeper():
     def __init__(self,board : Board,screen_size):
@@ -25,7 +26,8 @@ class Minesweeper():
         topLeft = (0, 0)
         for row in range(self.__board.size[0]):
             for col in range(self.__board.size[1]):
-                image = self.__images["empty-block"]
+                piece = self.__board.getPiece((row, col))
+                image = self.getImage(piece)
                 self.__screen.blit(image, topLeft)
                 topLeft = topLeft[0] + self.__pieceSize[0], topLeft[1]
             topLeft = 0, topLeft[1] + self.__pieceSize[1] 
@@ -38,3 +40,7 @@ class Minesweeper():
             image = pygame.image.load(r"images/" + filename)
             image = pygame.transform.scale(image, self.__pieceSize)
             self.__images[filename.split(".")[0]] = image 
+        
+    def getImage(self, piece: Piece):
+        string = "unclicked-bomb" if piece.bomb else "empty-block"
+        return self.__images[string]
