@@ -27,8 +27,8 @@ class Board():
 
     def getListOfNeighbors(self, index):
         neighbors = []
-        for row in range(index[0 - 1], index[0 + 2]):
-            for col in range(index[0 - 1], index[0 + 2]):
+        for row in range(index[0] - 1, index[0] + 2):
+            for col in range(index[0] - 1, index[0] + 2):
                 outOfBounds = row < 0 or row >= self.__size[0] or col < 0 or col >= self.__size[1]
                 same = row == index[0] and col == index[1]
                 if (same or outOfBounds):

@@ -42,5 +42,9 @@ class Minesweeper():
             self.__images[filename.split(".")[0]] = image 
         
     def getImage(self, piece: Piece):
-        string = "unclicked-bomb" if piece.bomb else "empty-block"
+        string = ""
+        if piece.getHasBomb():
+            string = "unclicked-bomb"
+        else:
+            string = str(piece.bombsAround)
         return self.__images[string]
