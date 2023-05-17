@@ -24,7 +24,7 @@ class Piece():
     def bombsAround(self):
         return self.__bombs_around
 
-    def setNeighbors(self, neighbors):
+    def setNeighborss(self, neighbors):
         self.__neighbors = neighbors
         self.setBombsAround()
 

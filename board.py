@@ -9,7 +9,7 @@ class Board():
 
     def setBoard(self):
         self.__board = []
-        for row in range(self.__size[0]):
+        for i in range(self.__size[0]):
             row = []
             for col in range(self.__size[1]):
                 hasBomb = random() < self.__prob
@@ -23,17 +23,20 @@ class Board():
             for col in range(self.__size[1]):
                 piece = self.getPiece((row, col))
                 neighbors = self.getListOfNeighbors((row, col))
-                piece.setNeighbors(neighbors)
+                piece.setNeighborss(neighbors)
 
     def getListOfNeighbors(self, index):
         neighbors = []
         for row in range(index[0] - 1, index[0] + 2):
             for col in range(index[0] - 1, index[0] + 2):
-                outOfBounds = row < 0 or row >= self.__size[0] or col < 0 or col >= self.__size[1]
-                same = row == index[0] and col == index[1]
-                if (same or outOfBounds):
-                    continue
-                neighbors.append(self.getPiece((row, col)))
+                outOfBounds = 0
+                same = 0
+                if row < 0 or row >= self.__size[0] or col < 0 or col >= self.__size[1]:
+                    outOfBounds = 1
+                if  row == index[0] and col == index[1]:
+                    same = 1
+                if (same != 1 and outOfBounds != 1):
+                    neighbors.append(self.getPiece((row, col)))
         return neighbors
 
 
