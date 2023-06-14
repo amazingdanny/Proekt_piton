@@ -73,11 +73,19 @@ class Minesweeper():
                     position = pygame.mouse.get_pos()
                     rightClick = pygame.mouse.get_pressed()[2]
                     self.handleClick(position, rightClick)
+                if event.type == pygame.KEYDOWN and self.__board.getLost():
+                        self.__board.replay()
+                        self.__board.setBoard()
+                        self.draw()
+                if event.type == pygame.KEYDOWN and self.__board.getWon():
+                    self.__board.replay()
+                    self.__board.setBoard()
+                    self.draw()
             self.draw()
             pygame.display.flip()
             if self.__board.getWon():
                 font = pygame.font.Font(None, 128)
-                text = font.render("You Won!!!", True, (255, 0, 0))
+                text = font.render(r"You Won!!!\n Press any key to restart", True, (255, 0, 0))
                 text_width, text_height = text.get_size()
                 text_x = (self.__screen_size[0] - text_width) // 2
                 text_y = (self.__screen_size[1] - text_height) // 2
@@ -85,7 +93,7 @@ class Minesweeper():
                 pygame.display.flip()
             if self.__board.getLost():
                 font = pygame.font.Font(None, 128)
-                text = font.render("You Lost", True, (255, 0, 0))
+                text = font.render("You Lost \n press any key to restart", True, (255, 0, 0))
                 text_width, text_height = text.get_size()
                 text_x = (self.__screen_size[0] - text_width) // 2
                 text_y = (self.__screen_size[1] - text_height) // 2

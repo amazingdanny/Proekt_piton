@@ -11,6 +11,13 @@ class Board():
         self.__board = []
         self.setBoard()
 
+    def replay(self):
+        self.__numClicked = 0
+        self.__numNonBombs = 0
+        self.__board = []
+        self.__lost = False
+
+
     def setBoard(self):
         for i in range(self.__size[0]):
             row = []
