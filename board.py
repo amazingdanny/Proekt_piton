@@ -8,10 +8,10 @@ class Board():
         self.__lost = False
         self.__numClicked = 0
         self.__numNonBombs = 0
+        self.__board = []
         self.setBoard()
 
     def setBoard(self):
-        self.__board = []
         for i in range(self.__size[0]):
             row = []
             for col in range(self.__size[1]):
